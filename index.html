@@ -1,12 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Form</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <title>Projects and Contact</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    <style>
+      .custom-scrollbar {
+            overflow-y: auto;
+            max-height: 500px;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            border-radius: 10px;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .background-image {
+            background-image: url('img/background-image.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 150px;
+            width: 980px;
+            margin: 0 auto;
+            position: relative;
+            border-radius: 4px;
+        }
+        .profile-image {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            position: absolute;
+            left: 50%;
+            padding: 5px;
+            transform: translateX(-50%);
+        }
+        .profile-content {
+            text-align: center;
+            margin-top: 70px; /* Adjust based on the height of the images */
+        }
+
+        .horizontal-align {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            gap: 10px; /* Espaçamento entre os ícones */
+        }
+    </style>
+    </style>
+    <script>
+        function openModal(projectId) {
+            document.getElementById(`modal-${projectId}`).style.display = "block";
+        }
+
+        function closeModal(projectId) {
+            document.getElementById(`modal-${projectId}`).style.display = "none";
+        }
+
+        function sendEmail(event) {
+            event.preventDefault();
+
+            emailjs.sendForm('service_id', 'template_id', event.target)
+                .then(function () {
+                    alert('Email sent successfully!');
+                }, function (error) {
+                    alert('Failed to send email: ' + JSON.stringify(error));
+                });
+        }
+    </script>
 </head>
-<class="bg-gray-100 text-gray-800">
+
+<body class="bg-gray-100">
+    <!-- Navigation -->
     <header class="bg-blue-500 text-white p-6 shadow-lg">
         <div class="container mx-auto flex justify-between items-center">
             <h1 class="text-4xl font-bold">Bruno Francisco Manjate</h1>
@@ -25,29 +119,64 @@
 
     <main class="container mx-auto my-8 p-6 bg-white rounded-lg shadow-lg">
         <section id="profile" class="mb-8 text-center">
-            <img src="img/bruno.jpg" alt="Profile Picture" class="w-32 h-32 rounded-full mx-auto">
-            <h2 class="text-3xl font-bold mt-4">Bruno Francisco Manjate</h2>
-            <p class="text-xl text-gray-600">Network Administrator and Cyber Security Specialist</p>
+            <div class="background-image">
+                <img src="img/bruno.jpg" alt="Profile Picture" class="profile-image">
+            </div>
+            <div class="profile-content">
+                <h2 class="text-3xl font-bold mt-4">Bruno Francisco Manjate</h2>
+                <p class="text-xl text-gray-600">Network Administrator and Cyber Security Specialist</p>
+            </div>
+
         </section>
     </main>
 
+    <!-- About Section -->
     <main class="container mx-auto my-8 p-6 bg-white rounded-lg shadow-lg">
         <section id="about" class="mb-8">
             <h2 class="text-2xl font-bold mb-4">About</h2>
-            <p>🌐 Hello! I'm <b>Bruno Francisco Manjate</b>, an enthusiastic Information Technology (IT) professional with practical experience in <b>Computer Networks, Cyber Security, and Software Development</b>. I firmly believe that, in the current era, a robust network is crucial, but a secure network is even more vital. With a passion for developing innovative solutions, my journey includes practical experience in creating efficient and scalable software. I am constantly seeking ways to translate challenges into opportunities through intelligent digital solutions. 🚀</p>
-            <p>Let's connect and explore collaboration opportunities! I am open to job opportunities and eager to contribute with my knowledge and experience. 🤝✨</p>
+            <a href="https://git.io/typing-svg">
+                <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=23&pause=1000&color=000000&random=false&width=456&lines=Hi+i'm+Bruno+Francisco+Manjate+%F0%9F%91%8B"
+                    alt="Typing SVG">
+            </a>
+            <p> An enthusiastic Information Technology (IT) professional with
+                practical experience in <b>Computer Networks, Cyber Security, and Software Development</b>. I firmly believe
+                that, in the current era, a robust network is crucial, but a secure network is even more vital. With a
+                passion for developing innovative solutions, my journey includes practical experience in creating efficient
+                and scalable software. I am constantly seeking ways to translate challenges into opportunities through intelligent digital solutions. 🚀</p>
+            <br>
+            <p>Let's connect and explore collaboration opportunities! I am open to job opportunities and eager to contribute
+                with my knowledge and experience. 🤝✨</p>
+        </section>
+        <main class="container mx-auto my-8 p-6 bg-white rounded-lg shadow-lg">
+            <section id="about" class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Core competencies</h2>
+                <p>Teamwork • Computer Networking • Cyber Security • Application and website development</p>
+            </section>
+        </main>    
+    </main>
+
+   
+    <main class="container mx-auto my-8 p-6 bg-white rounded-lg shadow-lg">
+        <section id="about" class="mb-8">
+            <h2 class="text-2xl font-bold mb-4">Services</h2>
+            <p>Computer Networking • Web Development • Mobile Application Development • Computer Repair • Graphic Design
+            • Virtual Assistance</p>
         </section>
     </main>
 
+    <!-- Skills Section -->
     <main class="container mx-auto my-8 p-6 bg-white rounded-lg shadow-lg">
         <section id="skills" class="mb-8">
             <h2 class="text-2xl font-bold mb-4">Skills</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
+    
                 <!-- Programming Skills -->
                 <div class="bg-gray-200 p-4 rounded-lg shadow-md">
                     <h3 class="text-xl font-semibold mb-2">Programming</h3>
                     <ul class="list-disc list-inside">
+                        <li>Java</li>
+                        <li>C</li>
+                        <li>C++</li>
                         <li>Python</li>
                         <li>JavaScript</li>
                         <li>Software Development</li>
@@ -58,7 +187,7 @@
                         <li>Version Control (Git)</li>
                     </ul>
                 </div>
-
+    
                 <!-- Network Skills -->
                 <div class="bg-gray-200 p-4 rounded-lg shadow-md">
                     <h3 class="text-xl font-semibold mb-2">Network</h3>
@@ -80,7 +209,7 @@
                         <li>Cloud Computing</li>
                     </ul>
                 </div>
-
+    
                 <!-- Cybersecurity Skills -->
                 <div class="bg-gray-200 p-4 rounded-lg shadow-md">
                     <h3 class="text-xl font-semibold mb-2">Cybersecurity</h3>
@@ -104,113 +233,163 @@
             </div>
         </section>
     </main>
-    
-    <main class="container mx-auto my-8 p
-    p-6 bg-white rounded-lg shadow-lg">
-    <!-- Main Projects Title -->
-    <section id="projects" class="mb-8">
-        <h2 class="text-3xl font-bold mb-8">Projects</h2>
-        
-        <!-- Programming Projects -->
-        <section id="programming-projects" class="mb-8">
-            <h3 class="text-2xl font-bold mb-4">Programming Projects</h3>
+
+    <!-- Projects Section -->
+    <section id="projects" class="container mx-auto my-8 p-6 bg-white rounded-lg shadow-lg">
+        <h2 class="text-2xl font-bold mb-4">Projects</h2>
+
+        <!-- Network Projects -->
+         
+        <section id="network-projects" class="mb-8 custom-scrollbar">
+            <h3 class="text-2xl font-bold mb-4">Network Projects</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div class="bg-gray-200 p-6 rounded-lg shadow-md">
-                    <h4 class="text-xl font-semibold mb-2">Project 1: </h4>
-                    <p class="mb-4">.</p>
-                    <a href="https://github.com/yourusername/project1" class="text-blue-500 hover:underline">View on GitHub</a>
+                    <img src="img/image4.jpg" alt="Project 4 Image" class="mb-4 rounded-lg">
+                    <h4 class="text-xl font-semibold mb-2">Implementation of a Bank System Network Design : </h4>
+                    <p class="mb-4">Description for Project .</p>
+                    <button onclick="openModal('network-project-4')" class="text-blue-500 hover:underline">View
+                        Details</button>
                 </div>
                 <div class="bg-gray-200 p-6 rounded-lg shadow-md">
-                    <h4 class="text-xl font-semibold mb-2">Project 2: </h4>
-                    <p class="mb-4">.</p>
-                    <a href="https://github.com/yourusername/project2" class="text-blue-500 hover:underline">View on GitHub</a>
+                    <img src="img/image5.png" alt="Project 5 Image" class="mb-4 rounded-lg">
+                    <h4 class="text-xl font-semibold mb-2">Implementation of an internet network in a computer room : </h4>
+                    <p class="mb-4">Description for Project .</p>
+                    <button onclick="openModal('network-project-5')" class="text-blue-500 hover:underline">View
+                        Details</button>
                 </div>
                 <div class="bg-gray-200 p-6 rounded-lg shadow-md">
-                    <h4 class="text-xl font-semibold mb-2">Project 3: </h4>
-                    <p class="mb-4">.</p>
-                    <a href="https://github.com/yourusername/project3" class="text-blue-500 hover:underline">View on GitHub</a>
+                    <img src="path/to/image6.jpg" alt="Project 6 Image" class="mb-4 rounded-lg">
+                    <h4 class="text-xl font-semibold mb-2">Project : </h4>
+                    <p class="mb-4">Description for Project .</p>
+                    <button onclick="openModal('network-project-6')" class="text-blue-500 hover:underline">View
+                        Details</button>
                 </div>
             </div>
         </section>
 
-        <!-- Network Projects -->
-        <section id="network-projects" class="mb-8">
-            <h3 class="text-2xl font-bold mb-4">Network Projects</h3>
+        <!-- Programming Projects -->
+        <section id="programming-projects" class="mb-8 custom-scrollbar">
+            <h3 class="text-2xl font-bold mb-4">Programming Projects</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div class="bg-gray-200 p-6 rounded-lg shadow-md">
-                    <h4 class="text-xl font-semibold mb-2">Project 4: </h4>
-                    <p class="mb-4">.</p>
-                    <a href="https://github.com/yourusername/project4" class="text-blue-500 hover:underline">View on GitHub</a>
+                    <img src="img/image7.jpg" alt="Project 7 Image" class="mb-4 rounded-lg">
+                    <h4 class="text-xl font-semibold mb-2">Parking Management System in Java Using Stack Data Structure : </h4>
+                    <p class="mb-4">Description for Project .</p>
+                    <button onclick="openModal('programming-project-7')" class="text-blue-500 hover:underline">View
+                        Details</button>
                 </div>
                 <div class="bg-gray-200 p-6 rounded-lg shadow-md">
-                    <h4 class="text-xl font-semibold mb-2">Project 5: </h4>
-                    <p class="mb-4">.</p>
-                    <a href="https://github.com/yourusername/project5" class="text-blue-500 hover:underline">View on GitHub</a>
+                    <img src="img/image8.jpg" alt="Project 8 Image" class="mb-4 rounded-lg">
+                    <h4 class="text-xl font-semibold mb-2">Joaquim Chaves Laboratory: </h4>
+                    <p class="mb-4">Description for Project .</p>
+                    <button onclick="openModal('programming-project-8')" class="text-blue-500 hover:underline">View
+                        Details</button>
                 </div>
                 <div class="bg-gray-200 p-6 rounded-lg shadow-md">
-                    <h4 class="text-xl font-semibold mb-2">Project 6: </h4>
-                    <p class="mb-4">.</p>
-                    <a href="https://github.com/yourusername/project6" class="text-blue-500 hover:underline">View on GitHub</a>
+                    <img src="img/image9.jpg" alt="Project 9 Image" class="mb-4 rounded-lg">
+                    <h4 class="text-xl font-semibold mb-2">Mozambique Airlines Ticket Purchase Management System :</h4>
+                    <p class="mb-4">Description for Project .</p>
+                    <button onclick="openModal('programming-project-9')" class="text-blue-500 hover:underline">View
+                        Details</button>
+                </div>
+
+                <div class="bg-gray-200 p-6 rounded-lg shadow-md">
+                    <img src="img/image10.jpg" alt="Project 10 Image" class="mb-4 rounded-lg">
+                    <h4 class="text-xl font-semibold mb-2">Hospital Management System :</h4>
+                    <p class="mb-4">Description for Project .</p>
+                    <button onclick="openModal('programming-project-10')" class="text-blue-500 hover:underline">View
+                        Details</button>
                 </div>
             </div>
         </section>
 
         <!-- Cybersecurity Projects -->
-        <section id="cybersecurity-projects" class="mb-8">
+        <section id="cybersecurity-projects" class="mb-8 custom-scrollbar">
             <h3 class="text-2xl font-bold mb-4">Cybersecurity Projects</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div class="bg-gray-200 p-6 rounded-lg shadow-md">
-                    <h4 class="text-xl font-semibold mb-2">Project 7: </h4>
-                    <p class="mb-4">.</p>
-                    <a href="https://github.com/yourusername/project7" class="text-blue-500 hover:underline">View on GitHub</a>
+                    <img src="path/to/image10.jpg" alt="Project 10 Image" class="mb-4 rounded-lg">
+                    <h4 class="text-xl font-semibold mb-2">Project : </h4>
+                    <p class="mb-4">Description for Project .</p>
+                    <button onclick="openModal('cybersecurity-project-10')" class="text-blue-500 hover:underline">View
+                        Details</button>
                 </div>
                 <div class="bg-gray-200 p-6 rounded-lg shadow-md">
-                    <h4 class="text-xl font-semibold mb-2">Project 8: </h4>
-                    <p class="mb-4">.</p>
-                    <a href="https://github.com/yourusername/project8" class="text-blue-500 hover:underline">View on GitHub</a>
+                    <img src="path/to/image11.jpg" alt="Project 11 Image" class="mb-4 rounded-lg">
+                    <h4 class="text-xl font-semibold mb-2">Project : </h4>
+                    <p class="mb-4">Description for Project .</p>
+                    <button onclick="openModal('cybersecurity-project-11')" class="text-blue-500 hover:underline">View
+                        Details</button>
                 </div>
                 <div class="bg-gray-200 p-6 rounded-lg shadow-md">
-                    <h4 class="text-xl font-semibold mb-2">Project 9:</h4>
-                    <p class="mb-4">.</p>
-                    <a href="https://github.com/yourusername/project9" class="text-blue-500 hover:underline">View on GitHub</a>
+                    <img src="path/to/image12.jpg" alt="Project 12 Image" class="mb-4 rounded-lg">
+                    <h4 class="text-xl font-semibold mb-2">Project :</h4>
+                    <p class="mb-4">Description for Project .</p>
+                    <button onclick="openModal('cybersecurity-project-12')" class="text-blue-500 hover:underline">View
+                        Details</button>
                 </div>
             </div>
         </section>
     </section>
-</main>
-<main class="container mx-auto my-8 p-6 bg-white rounded-lg shadow-lg">
-    <section id="education" class="mb-8">
-        <h2 class="text-2xl font-bold mb-4">Education</h2>
-        <ul class="list-disc list-inside">
-            <li><b>ISCTEM - Instituto Superior de Ciências e Tecnologia de Moçambique</b>, Licenciatura, Engenharia de
-                Computação.</li>
-            <li><b>Instituto Focos</b>, Ensino Técnico, Computer Installation and Repair Technology/Technician.</li>
-            <li><b>Aprenda Mais</b>, Inglês.</li>
-            <li><b>Alison</b>, CompTIA Cloud+ Advanced.</li>
-            <li><b>Simplilearn Alumni</b>, Certified Information Systems Security Professional (CISSP®).
-            </li>
-        </ul>
-    </section>
-</main>
-    
+
     <main class="container mx-auto my-8 p-6 bg-white rounded-lg shadow-lg">
-    <section id="contact" class="mb-8">
+        <div>
+            <h3 class="text-2xl font-bold mb-4">GitHub activity graph</h3>
+            <img src="https://ssr-contributions-svg.vercel.app/_/BrunoManjate?chart=3dbar&gap=0.6&scale=2&flatten=2&animation=wave&animation_duration=1&animation_delay=0.05&animation_amplitude=20&animation_frequency=0.5&animation_wave_center=10_0&format=svg&weeks=30&theme=native"
+                alt="GitHub Activity Graph">
+        </div>
+    </main>
+
+    <main class="container mx-auto my-8 p-6 bg-white rounded-lg shadow-lg">
+        <section id="education" class="mb-8">
+            <h2 class="text-2xl font-bold mb-4">Education</h2>
+            <ul class="list-disc list-inside">
+                <li><b>Institute of Science and Technology of Mozambique</b>, Bachelor's degree, Computer Engineering.</li>
+                <li><b>Instituto Focos</b>, Technical Education, Computer Installation and Repair Technology/Technician.</li>
+                <li><b>Aprenda Mais</b>, English.</li>
+                <li><b>Alison</b>, CompTIA Cloud+ Advanced.</li>
+                <li><b>Simplilearn Alumni</b>, Certified Information Systems Security Professional (CISSP®).</li>
+                <li><b>Simplilearn Alumni</b>, CCNA 200-301 Network Fundamentals Course.</li>
+                <li><b>Great Learning</b>, Cyber Security Threats.</li>
+                <li><b>Great Learning</b>, Linux Tutorial.</li>
+                <li><b>Hackone</b>, Profession: Network Analyst.</li>
+                <li><b>Hackone</b>, Mikrotik Unifi.</li>
+            </ul>
+        </section>
+    </main>
+
+    <main class="container mx-auto my-8 p-6 bg-white rounded-lg shadow-lg">
+        <section id="education" class="mb-8">
+            <h2 class="text-2xl font-bold mb-4">Languages</h2>
+            <ul class="list-disc list-inside">
+                <li><b>English</b>, Basic level.</li>
+                <li><b>Portugues</b>, Basic level.</li>
+                </li>
+            </ul>
+        </section>
+    </main>
+
+    <!-- Contact Section -->
+    <section id="contact" class="container mx-auto my-8 p-6 bg-white rounded-lg shadow-lg">
         <h2 class="text-2xl font-bold mb-4">Contact</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <!-- Contact Form -->
             <div class="bg-gray-100 p-6 rounded-lg shadow-md">
-                <form id="contactForm" action="send_email.php" method="POST" class="space-y-4">
+                <form id="contactForm" class="space-y-4" onsubmit="sendEmail(event)">
                     <div>
                         <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-                        <input type="text" id="name" name="name" class="mt-1 p-2 border border-gray-300 rounded-md w-full" required>
+                        <input type="text" id="name" name="name"
+                            class="mt-1 p-2 border border-gray-300 rounded-md w-full" required>
                     </div>
                     <div>
                         <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                        <input type="email" id="email" name="email" class="mt-1 p-2 border border-gray-300 rounded-md w-full" required>
+                        <input type="email" id="email" name="email"
+                            class="mt-1 p-2 border border-gray-300 rounded-md w-full" required>
                     </div>
                     <div>
                         <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
-                        <textarea id="message" name="message" class="mt-1 p-2 border border-gray-300 rounded-md w-full" required></textarea>
+                        <textarea id="message" name="message" class="mt-1 p-2 border border-gray-300 rounded-md w-full"
+                            required></textarea>
                     </div>
                     <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-md">Send</button>
                 </form>
@@ -218,24 +397,144 @@
             <!-- Contact Information -->
             <div class="bg-gray-100 p-6 rounded-lg shadow-md">
                 <h3 class="text-xl font-semibold mb-4">Contact Information</h3>
-                <p class="mb-2"><strong>Your Profile:</strong> <a href="https://linkedin.com/in/bruno-f-manjate-150089241" class="text-blue-500 hover:underline">linkedin.com/in/bruno-f-manjate-150089241</a></p>
-                <p class="mb-2"><strong>Phone:</strong> 869079473 (Cell)</p>
-                <p class="mb-2"><strong>Email:</strong> <a href="mailto:brunomanjate2@gmail.com" class="text-blue-500 hover:underline">brunomanjate2@gmail.com</a></p>
+                <section id="contact" class="container mx-auto my-8 p-6 bg-white rounded-lg shadow-lg">
+                    <div class="horizontal-align">
+                        <a href="https://www.linkedin.com/in/bruno-f-manjate-150089241?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BQOM07OcwT2CuA8S8c18zbw%3D%3D">
+                            <img height="80" width="80" src="https://github.com/BrunoManjate/BrunoManjate/assets/87826515/fdfc4b64-00b2-4451-9ecc-1839d9db639b" alt="LinkedIn">
+                        </a>
+                        <a href="mailto:brunomanjate2@gmail.com">
+                            <img height="80" width="80" src="https://github.com/BrunoManjate/BrunoManjate/assets/87826515/83c28032-05f9-4cdf-b7fb-3246a921ad0c" alt="Email">
+                        </a>
+                        <a href="https://www.instagram.com/bruno_f_manjate/">
+                            <img height="80" width="80" src="https://github.com/BrunoManjate/BrunoManjate/assets/87826515/07f97a35-0458-4a95-9de0-9b274274ab03" alt="Instagram">
+                        </a>
+                        <a href="https://wa.me/845603981?text=Hello%2C%20how%20are%20you%3F%20I%20came%20from%20GitHub%2C%20can%20we%20talk%3F">
+                            <img height="80" width="80" src="https://github.com/BrunoManjate/BrunoManjate/assets/87826515/3b239efa-a831-46d4-81a5-b51e6bb03579" alt="WhatsApp">
+                        </a>
+                        <a href="https://github.com/BrunoManjate">
+                            <img height="80" width="80" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub">
+                        </a>
+                    </div>
+                </section>
             </div>
         </div>
     </section>
-</main>
-    
+
     <footer class="bg-blue-500 text-white text-center p-6">
         <div class="container mx-auto">
             <p>&copy; 2024 Bruno Francisco Manjate. All rights reserved.</p>
             <p class="mt-4">
-                <a href="https://www.linkedin.com/in/bruno-f-manjate-150089241" class="text-white hover:underline mx-2">LinkedIn</a>
+                <a href="https://www.linkedin.com/in/bruno-f-manjate-150089241"
+                    class="text-white hover:underline mx-2">LinkedIn</a>
                 <a href="https://github.com/yourusername" class="text-white hover:underline mx-2">GitHub</a>
                 <a href="mailto:brunomanjate2@gmail.com" class="text-white hover:underline mx-2">Email</a>
             </p>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <!-- Modals for Projects -->
+    <div id="modal-network-project-4" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('network-project-4')">&times;</span>
+            <img src="img/image4.jpg" alt="Project 4 Image" class="mb-4 rounded-lg">
+            <h4 class="text-xl font-semibold mb-2">Implementation of a Bank System Network Design : </h4>
+            <p>Description for Project .</p>
+        </div>
+    </div>
+
+    <div id="modal-network-project-5" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('network-project-5')">&times;</span>
+            <img src="img/image5.png" alt="Project 5 Image" class="mb-4 rounded-lg">
+            <h4 class="text-xl font-semibold mb-2">Implementation of an internet network in a computer room : </h4>
+            <p>Description for Project .</p>
+        </div>
+    </div>
+
+    <div id="modal-network-project-6" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('network-project-6')">&times;</span>
+            <img src="path/to/image6.jpg" alt="Project 6 Image" class="mb-4 rounded-lg">
+            <h4 class="text-xl font-semibold mb-2">Hospital Management System : </h4>
+            <p>Description for Project .</p>
+        </div>
+    </div>
+
+    <div id="modal-programming-project-7" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('programming-project-7')">&times;</span>
+            <img src="img/image7.jpg" alt="Project 7 Image" class="mb-4 rounded-lg">
+            <h4 class="text-xl font-semibold mb-2">Parking Management System in Java Using Stack Data Structure : </h4>
+            <p>Description for Project .</p>
+        </div>
+    </div>
+
+    <div id="modal-programming-project-8" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('programming-project-8')">&times;</span>
+            <img src="img/image8.jpg" alt="Project 8 Image" class="mb-4 rounded-lg">
+            <h4 class="text-xl font-semibold mb-2">Joaquim Chaves Laboratory : </h4>
+            <p>Description for Project .</p>
+        </div>
+    </div>
+    
+    <div id="modal-programming-project-9" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('programming-project-9')">&times;</span>
+            <img src="img/image9.jpg" alt="Project 9 Image" class="mb-4 rounded-lg">
+            <h4 class="text-xl font-semibold mb-2">Mozambique Airlines Ticket Purchase Management System : </h4>
+            <p>Description for Project .</p>
+        </div>
+    </div>
+
+    <div id="modal-programming-project-10" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('programming-project-10')">&times;</span>
+            <img src="img/image10.jpg" alt="Project 10 Image" class="mb-4 rounded-lg">
+            <h4 class="text-xl font-semibold mb-2">Hospital Management System : </h4>
+            <p>Description for Project .</p>
+        </div>
+    </div>
+
+    <div id="modal-cybersecurity-project-10" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('cybersecurity-project-10')">&times;</span>
+            <img src="path/to/image10.jpg" alt="Project 10 Image" class="mb-4 rounded-lg">
+            <h4 class="text-xl font-semibold mb-2">Project : </h4>
+            <p>Description for Project .</p>
+        </div>
+    </div>
+
+    <div id="modal-cybersecurity-project-11" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('cybersecurity-project-11')">&times;</span>
+            <img src="path/to/image11.jpg" alt="Project 11 Image" class="mb-4 rounded-lg">
+            <h4 class="text-xl font-semibold mb-2">Project : </h4>
+            <p>Description for Project .</p>
+        </div>
+    </div>
+
+    <div id="modal-cybersecurity-project-12" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('cybersecurity-project-12')">&times;</span>
+            <img src="path/to/image12.jpg" alt="Project 12 Image" class="mb-4 rounded-lg">
+            <h4 class="text-xl font-semibold mb-2">Project : </h4>
+            <p>Description for Project .</p>
+        </div>
+    </div>
+
+    <script>
+        function sendEmail(event) {
+            event.preventDefault();
+
+            emailjs.sendForm('service_id', 'template_id', event.target)
+                .then(function () {
+                    alert('Email sent successfully!');
+                }, function (error) {
+                    alert('Failed to send email: ' + JSON.stringify(error));
+                });
+        }
+    </script>
 </body>
+
+</html>
