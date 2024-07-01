@@ -1,16 +1,9 @@
-document.addEventListener('DOMContentLoaded', (event) => {
-    const contactForm = document.getElementById('contactForm');
-    
-    contactForm.addEventListener('submit', function(event) {
-        event.preventDefault();
+function sendMail(){
+    let parms = {
+        name : document.getElementById('name').value,
+        email : document.getElementById('email').value,
+        message : document.getElementById('message').value 
+    }
 
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const message = document.getElementById('message').value;
-
-        alert(`Thank you for your message, ${name}! We'll get back to you at ${email}.`);
-        
-        // Optionally, you can clear the form fields after submission
-        contactForm.reset();
-    });
-});
+    emailjs.send("service_vhoxjo4", "template_250qi7q",parms).then(alert(`Thank you for your message, ${name}! We'll get back to you at ${email}.`));
+}
